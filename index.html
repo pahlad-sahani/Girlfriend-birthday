@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="en">
+ <head><script>window["__codeletBootstrap__"]=JSON.parse('{"A":"A","B":"20260717-05-8209e4e"}');</script><script src="/_sdk/f432b76fb310b513.telemetry_sdk.js" integrity="sha512-9FJQ55EKmmqhyyik8BhrMVfm0+iYYfb8uOlRsjtkxJMEI97qOVEI4PnHohDjQAtvAep0IOEpdQ64eki0sz62ug=="></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday My Love</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&amp;family=Poppins:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <style>
+        :root {
+            --primary: #FF4F81;
+            --secondary: #FFB6C1;
+            --gold: #FFD700;
+            --dark: #0F172A;
+            --bg: #FFF9FB;
+        }
+        body { font-family: 'Poppins', sans-serif; background: var(--bg); }
+        .font-script { font-family: 'Great Vibes', cursive; }
+
+        /* Loading */
+        #loader { transition: opacity 0.8s ease, visibility 0.8s ease; }
+        #loader.hidden { opacity: 0; visibility: hidden; }
+        @keyframes heartPulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.3); } }
+        .heart-pulse { animation: heartPulse 1s ease infinite; }
+        @keyframes progressBar { from { width: 0; } to { width: 100%; } }
+        .progress-fill { animation: progressBar 2.5s ease forwards; }
+
+        /* Floating hearts */
+        @keyframes floatUp { 0% { transform: translateY(0) rotate(0deg); opacity: 1; } 100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; } }
+        .floating-heart { position: fixed; bottom: -50px; animation: floatUp linear infinite; pointer-events: none; z-index: 0; color: var(--primary); opacity: 0.3; }
+
+        /* Glassmorphism */
+        .glass { background: rgba(255,255,255,0.15); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.3); }
+        .glass-pink { background: rgba(255,79,129,0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255,79,129,0.2); }
+
+        /* Reveal animations */
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.4,0,0.2,1); }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        /* Card hover */
+        .love-card { transition: all 0.4s ease; }
+        .love-card:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 20px 60px rgba(255,79,129,0.3); }
+
+        /* Gift box */
+        @keyframes shake { 0%,100% { transform: rotate(0); } 25% { transform: rotate(-5deg); } 75% { transform: rotate(5deg); } }
+        .gift-shake { animation: shake 0.5s ease infinite; }
+        .gift-opened { animation: none; transform: scale(1.1); }
+
+        /* Gradient bg */
+        @keyframes gradientShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        .animated-gradient { background: linear-gradient(135deg, #0F172A, #1e1b4b, #4c1d95, #831843, #0F172A); background-size: 400% 400%; animation: gradientShift 12s ease infinite; }
+
+        /* Lightbox */
+        #lightbox { transition: opacity 0.3s ease; }
+        #lightbox.hidden { opacity: 0; pointer-events: none; }
+
+        /* Glow */
+        .glow-border { box-shadow: 0 0 20px rgba(255,79,129,0.2), inset 0 0 20px rgba(255,79,129,0.05); }
+
+        /* Countdown */
+        .countdown-box { background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255,215,0,0.3); }
+    </style>
+  <script src="/_sdk/e3937a0574eb2d69.data_sdk.js" type="text/javascript" integrity="sha512-xbp/ACqEQy1aDxYMtXTrR3y5MUbzxuggRR/9sD48Gl4VhLMMCiAHsxMaFV6DTdeBpR6ymF+t2zhPKYkWM3+Jfw=="></script>
+  <script src="/_sdk/9432170dbd2ae0df.resizing_sdk.js" type="text/javascript" integrity="sha512-FeT+58sb1f9ejWPWFjCbJvTT+SDwGV+ngrHUnlO7TWEOoqwOLj6p256kO3vOL7DIWl1cIgrobiof8v2bOigwPg=="></script>
+ </head>
+ <body data-template-id="__page-root" class="w-full min-h-screen overflow-x-hidden"><!-- Loading Screen -->
+  <div id="loader" class="fixed inset-0 z-[9999] flex flex-col items-center justify-center animated-gradient">
+   <div class="heart-pulse text-6xl mb-6">
+    💖
+   </div>
+   <p class="font-script text-white text-4xl md:text-5xl mb-8">My Love</p>
+   <div class="w-48 h-1 bg-white/20 rounded-full overflow-hidden">
+    <div class="progress-fill h-full bg-gradient-to-r from-pink-400 to-rose-500 rounded-full"></div>
+   </div>
+  </div><!-- Floating Hearts Background -->
+  <div id="hearts-container" class="fixed inset-0 pointer-events-none z-0" aria-hidden="true"></div><!-- Hero Section -->
+  <header class="relative w-full flex items-center justify-center animated-gradient" style="min-height: calc(100 * min(var(--vh, 1vh), 1vh));">
+   <div class="absolute inset-0 overflow-hidden">
+    <div class="absolute w-96 h-96 bg-pink-500/10 rounded-full blur-3xl top-10 -left-20"></div>
+    <div class="absolute w-80 h-80 bg-purple-500/10 rounded-full blur-3xl bottom-10 right-0"></div>
+   </div>
+   <div class="relative z-10 glass rounded-3xl p-8 md:p-14 max-w-2xl mx-4 text-center">
+    <h1 data-template-id="hero-title" class="canva-text font-script"></h1>
+    <p data-template-id="hero-subtitle" class="canva-text mt-6 leading-relaxed"></p>
+    <div class="mt-8 flex flex-wrap justify-center gap-4"><a href="#love-letter" data-template-id="hero-btn-1" class="canva-button px-8 py-3 rounded-full font-semibold transition-all hover:scale-105 hover:shadow-lg hover:shadow-pink-500/30"></a> <a href="#gallery" data-template-id="hero-btn-2" class="canva-button px-8 py-3 rounded-full font-semibold border-2 border-white/40 transition-all hover:scale-105 hover:bg-white/10"></a>
+    </div>
+   </div>
+  </header>
+  <main class="relative z-10 w-full"><!-- Love Letter -->
+   <section id="love-letter" class="py-20 px-4">
+    <div class="max-w-2xl mx-auto">
+     <div class="glass-pink rounded-3xl p-8 md:p-12 glow-border reveal">
+      <h2 data-template-id="letter-heading" class="canva-text font-script text-center mb-8"></h2>
+      <div class="space-y-4 text-center">
+       <p data-template-id="letter-line-1" class="canva-text"></p>
+       <p data-template-id="letter-line-2" class="canva-text"></p>
+       <p data-template-id="letter-line-3" class="canva-text"></p>
+       <p data-template-id="letter-line-4" class="canva-text"></p>
+       <p data-template-id="letter-line-5" class="canva-text"></p>
+      </div>
+      <p data-template-id="letter-signature" class="canva-text font-script text-right mt-8"></p>
+     </div>
+    </div>
+   </section><!-- Reasons I Love You -->
+   <section class="py-20 px-4">
+    <h2 data-template-id="reasons-heading" class="canva-text font-script text-center mb-12 reveal"></h2>
+    <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+     <div data-template-id="reason-1" class="canva-card love-card rounded-2xl p-5 text-center reveal">
+      <span class="text-2xl mb-2 block">😊</span>
+      <p data-template-id="reason-1-text" class="canva-text text-sm font-medium"></p>
+     </div>
+     <div data-template-id="reason-2" class="canva-card love-card rounded-2xl p-5 text-center reveal">
+      <span class="text-2xl mb-2 block">💕</span>
+      <p data-template-id="reason-2-text" class="canva-text text-sm font-medium"></p>
+     </div>
+     <div data-template-id="reason-3" class="canva-card love-card rounded-2xl p-5 text-center reveal">
+      <span class="text-2xl mb-2 block">👀</span>
+      <p data-template-id="reason-3-text" class="canva-text text-sm font-medium"></p>
+     </div>
+     <div data-template-id="reason-4" class="canva-card love-card rounded-2xl p-5 text-center reveal">
+      <span class="text-2xl mb-2 block">😂</span>
+      <p data-template-id="reason-4-text" class="canva-text text-sm font-medium"></p>
+     </div>
+     <div data-template-id="reason-5" class="canva-card love-card rounded-2xl p-5 text-center reveal">
+      <span class="text-2xl mb-2 block">✨</span>
+      <p data-template-id="reason-5-text" class="canva-text text-sm font-medium"></p>
+     </div>
+     <div data-template-id="reason-6" class="canva-card love-card rounded-2xl p-5 text-center reveal">
+      <span class="text-2xl mb-2 block">🤗</span>
+      <p data-template-id="reason-6-text" class="canva-text text-sm font-medium"></p>
+     </div>
+     <div data-template-id="reason-7" class="canva-card love-card rounded-2xl p-5 text-center reveal">
+      <span class="text-2xl mb-2 block">💪</span>
+      <p data-template-id="reason-7-text" class="canva-text text-sm font-medium"></p>
+     </div>
+     <div data-template-id="reason-8" class="canva-card love-card rounded-2xl p-5 text-center reveal">
+      <span class="text-2xl mb-2 block">🥰</span>
+      <p data-template-id="reason-8-text" class="canva-text text-sm font-medium"></p>
+     </div>
+     <div data-template-id="reason-9" class="canva-card love-card rounded-2xl p-5 text-center reveal">
+      <span class="text-2xl mb-2 block">🧠</span>
+      <p data-template-id="reason-9-text" class="canva-text text-sm font-medium"></p>
+     </div>
+     <div data-template-id="reason-10" class="canva-card love-card rounded-2xl p-5 text-center reveal">
+      <span class="text-2xl mb-2 block">☀️</span>
+      <p data-template-id="reason-10-text" class="canva-text text-sm font-medium"></p>
+     </div>
+     <div data-template-id="reason-11" class="canva-card love-card rounded-2xl p-5 text-center reveal">
+      <span class="text-2xl mb-2 block">👑</span>
+      <p data-template-id="reason-11-text" class="canva-text text-sm font-medium"></p>
+     </div>
+     <div data-template-id="reason-12" class="canva-card love-card rounded-2xl p-5 text-center reveal">
+      <span class="text-2xl mb-2 block">💖</span>
+      <p data-template-id="reason-12-text" class="canva-text text-sm font-medium"></p>
+     </div>
+    </div>
+   </section><!-- Memory Timeline -->
+   <section class="py-20 px-4">
+    <h2 data-template-id="timeline-heading" class="canva-text font-script text-center mb-12 reveal"></h2>
+    <div class="max-w-2xl mx-auto relative">
+     <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gradient-to-b from-pink-300 via-rose-400 to-pink-300"></div>
+     <div class="space-y-12">
+      <div class="reveal flex items-center">
+       <div class="w-1/2 text-right pr-6">
+        <p data-template-id="tl-1" class="canva-text font-semibold"></p>
+       </div>
+       <div class="w-4 h-4 bg-pink-500 rounded-full border-4 border-white shadow-lg z-10"></div>
+       <div class="w-1/2 pl-6">
+        <span class="text-sm text-gray-400">💬</span>
+       </div>
+      </div>
+      <div class="reveal flex items-center">
+       <div class="w-1/2 text-right pr-6">
+        <span class="text-sm text-gray-400">🤝</span>
+       </div>
+       <div class="w-4 h-4 bg-rose-500 rounded-full border-4 border-white shadow-lg z-10"></div>
+       <div class="w-1/2 pl-6">
+        <p data-template-id="tl-2" class="canva-text font-semibold"></p>
+       </div>
+      </div>
+      <div class="reveal flex items-center">
+       <div class="w-1/2 text-right pr-6">
+        <p data-template-id="tl-3" class="canva-text font-semibold"></p>
+       </div>
+       <div class="w-4 h-4 bg-pink-500 rounded-full border-4 border-white shadow-lg z-10"></div>
+       <div class="w-1/2 pl-6">
+        <span class="text-sm text-gray-400">📸</span>
+       </div>
+      </div>
+      <div class="reveal flex items-center">
+       <div class="w-1/2 text-right pr-6">
+        <span class="text-sm text-gray-400">🌹</span>
+       </div>
+       <div class="w-4 h-4 bg-rose-500 rounded-full border-4 border-white shadow-lg z-10"></div>
+       <div class="w-1/2 pl-6">
+        <p data-template-id="tl-4" class="canva-text font-semibold"></p>
+       </div>
+      </div>
+      <div class="reveal flex items-center">
+       <div class="w-1/2 text-right pr-6">
+        <p data-template-id="tl-5" class="canva-text font-semibold"></p>
+       </div>
+       <div class="w-4 h-4 bg-pink-500 rounded-full border-4 border-white shadow-lg z-10"></div>
+       <div class="w-1/2 pl-6">
+        <span class="text-sm text-gray-400">✈️</span>
+       </div>
+      </div>
+      <div class="reveal flex items-center">
+       <div class="w-1/2 text-right pr-6">
+        <span class="text-sm text-gray-400">⭐</span>
+       </div>
+       <div class="w-4 h-4 bg-rose-500 rounded-full border-4 border-white shadow-lg z-10"></div>
+       <div class="w-1/2 pl-6">
+        <p data-template-id="tl-6" class="canva-text font-semibold"></p>
+       </div>
+      </div>
+      <div class="reveal flex items-center">
+       <div class="w-1/2 text-right pr-6">
+        <p data-template-id="tl-7" class="canva-text font-semibold"></p>
+       </div>
+       <div class="w-4 h-4 bg-gold rounded-full border-4 border-white shadow-lg z-10" style="background:#FFD700"></div>
+       <div class="w-1/2 pl-6">
+        <span class="text-sm text-gray-400">❤️</span>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Photo Gallery -->
+   <section id="gallery" class="py-20 px-4">
+    <h2 data-template-id="gallery-heading" class="canva-text font-script text-center mb-12 reveal"></h2>
+    <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-3 gap-4">
+     <div class="rounded-2xl overflow-hidden cursor-pointer group reveal" onclick="openLightbox(0)"><img data-template-id="gallery-1" loading="lazy" class="canva-image w-full h-48 md:h-64 object-cover transition-transform duration-500 group-hover:scale-110">
+     </div>
+     <div class="rounded-2xl overflow-hidden cursor-pointer group reveal" onclick="openLightbox(1)"><img data-template-id="gallery-2" loading="lazy" class="canva-image w-full h-48 md:h-64 object-cover transition-transform duration-500 group-hover:scale-110">
+     </div>
+     <div class="rounded-2xl overflow-hidden cursor-pointer group reveal" onclick="openLightbox(2)"><img data-template-id="gallery-3" loading="lazy" class="canva-image w-full h-48 md:h-64 object-cover transition-transform duration-500 group-hover:scale-110">
+     </div>
+     <div class="rounded-2xl overflow-hidden cursor-pointer group reveal" onclick="openLightbox(3)"><img data-template-id="gallery-4" loading="lazy" class="canva-image w-full h-48 md:h-64 object-cover transition-transform duration-500 group-hover:scale-110">
+     </div>
+     <div class="rounded-2xl overflow-hidden cursor-pointer group reveal" onclick="openLightbox(4)"><img data-template-id="gallery-5" loading="lazy" class="canva-image w-full h-48 md:h-64 object-cover transition-transform duration-500 group-hover:scale-110">
+     </div>
+     <div class="rounded-2xl overflow-hidden cursor-pointer group reveal" onclick="openLightbox(5)"><img data-template-id="gallery-6" loading="lazy" class="canva-image w-full h-48 md:h-64 object-cover transition-transform duration-500 group-hover:scale-110">
+     </div>
+    </div>
+   </section><!-- Lightbox -->
+   <div id="lightbox" class="hidden fixed inset-0 z-[999] bg-black/90 flex items-center justify-center p-4" onclick="closeLightbox()"><img id="lightbox-img" class="max-w-full max-h-[80vh] rounded-2xl shadow-2xl object-contain">
+   </div><!-- Future Dreams -->
+   <section class="py-20 px-4">
+    <h2 data-template-id="dreams-heading" class="canva-text font-script text-center mb-12 reveal"></h2>
+    <div class="max-w-xl mx-auto space-y-6">
+     <div class="reveal glass-pink rounded-xl p-4 flex items-center gap-4">
+      <span class="text-2xl">✈️</span>
+      <p data-template-id="dream-1" class="canva-text"></p>
+     </div>
+     <div class="reveal glass-pink rounded-xl p-4 flex items-center gap-4">
+      <span class="text-2xl">🌅</span>
+      <p data-template-id="dream-2" class="canva-text"></p>
+     </div>
+     <div class="reveal glass-pink rounded-xl p-4 flex items-center gap-4">
+      <span class="text-2xl">🚗</span>
+      <p data-template-id="dream-3" class="canva-text"></p>
+     </div>
+     <div class="reveal glass-pink rounded-xl p-4 flex items-center gap-4">
+      <span class="text-2xl">🏡</span>
+      <p data-template-id="dream-4" class="canva-text"></p>
+     </div>
+     <div class="reveal glass-pink rounded-xl p-4 flex items-center gap-4">
+      <span class="text-2xl">🎂</span>
+      <p data-template-id="dream-5" class="canva-text"></p>
+     </div>
+     <div class="reveal glass-pink rounded-xl p-4 flex items-center gap-4">
+      <span class="text-2xl">👴👵</span>
+      <p data-template-id="dream-6" class="canva-text"></p>
+     </div>
+     <div class="reveal glass-pink rounded-xl p-4 flex items-center gap-4">
+      <span class="text-2xl">💞</span>
+      <p data-template-id="dream-7" class="canva-text"></p>
+     </div>
+    </div>
+   </section><!-- Birthday Wishes -->
+   <section class="py-20 px-4">
+    <div class="max-w-2xl mx-auto glass-pink rounded-3xl p-8 md:p-12 glow-border reveal text-center">
+     <h2 data-template-id="wishes-heading" class="canva-text font-script mb-8"></h2>
+     <div class="space-y-3">
+      <p data-template-id="wish-1" class="canva-text"></p>
+      <p data-template-id="wish-2" class="canva-text"></p>
+      <p data-template-id="wish-3" class="canva-text"></p>
+      <p data-template-id="wish-4" class="canva-text"></p>
+      <p data-template-id="wish-5" class="canva-text"></p>
+      <p data-template-id="wish-6" class="canva-text"></p>
+     </div>
+    </div>
+   </section><!-- Surprise Gift -->
+   <section class="py-20 px-4 text-center">
+    <h2 data-template-id="gift-heading" class="canva-text font-script mb-8 reveal"></h2>
+    <div id="gift-box" class="inline-block cursor-pointer gift-shake reveal" onclick="openGift()">
+     <div class="text-8xl md:text-9xl">
+      🎁
+     </div>
+    </div>
+    <div id="gift-message" class="hidden mt-8 max-w-lg mx-auto">
+     <p data-template-id="gift-message-text" class="canva-text font-script"></p>
+    </div>
+   </section><!-- Countdown -->
+   <section class="py-20 px-4">
+    <h2 data-template-id="countdown-heading" class="canva-text font-script text-center mb-8 reveal"></h2>
+    <div class="flex justify-center gap-4 md:gap-6 reveal">
+     <div class="countdown-box rounded-2xl p-4 md:p-6 text-center min-w-[70px]">
+      <div id="cd-hours" class="text-3xl md:text-4xl font-bold text-pink-500">
+       00
+      </div>
+      <div class="text-xs text-gray-400 mt-1">
+       Hours
+      </div>
+     </div>
+     <div class="countdown-box rounded-2xl p-4 md:p-6 text-center min-w-[70px]">
+      <div id="cd-minutes" class="text-3xl md:text-4xl font-bold text-pink-500">
+       00
+      </div>
+      <div class="text-xs text-gray-400 mt-1">
+       Minutes
+      </div>
+     </div>
+     <div class="countdown-box rounded-2xl p-4 md:p-6 text-center min-w-[70px]">
+      <div id="cd-seconds" class="text-3xl md:text-4xl font-bold text-pink-500">
+       00
+      </div>
+      <div class="text-xs text-gray-400 mt-1">
+       Seconds
+      </div>
+     </div>
+    </div>
+   </section><!-- Promises -->
+   <section class="py-20 px-4">
+    <h2 data-template-id="promise-heading" class="canva-text font-script text-center mb-12 reveal"></h2>
+    <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+     <div data-template-id="promise-1-card" class="canva-card love-card rounded-2xl p-6 text-center reveal">
+      <p data-template-id="promise-1" class="canva-text"></p>
+     </div>
+     <div data-template-id="promise-2-card" class="canva-card love-card rounded-2xl p-6 text-center reveal">
+      <p data-template-id="promise-2" class="canva-text"></p>
+     </div>
+     <div data-template-id="promise-3-card" class="canva-card love-card rounded-2xl p-6 text-center reveal">
+      <p data-template-id="promise-3" class="canva-text"></p>
+     </div>
+     <div data-template-id="promise-4-card" class="canva-card love-card rounded-2xl p-6 text-center reveal">
+      <p data-template-id="promise-4" class="canva-text"></p>
+     </div>
+     <div data-template-id="promise-5-card" class="canva-card love-card rounded-2xl p-6 text-center reveal">
+      <p data-template-id="promise-5" class="canva-text"></p>
+     </div>
+     <div data-template-id="promise-6-card" class="canva-card love-card rounded-2xl p-6 text-center reveal">
+      <p data-template-id="promise-6" class="canva-text"></p>
+     </div>
+    </div>
+   </section><!-- Ending -->
+   <section class="py-20 px-4">
+    <div class="max-w-2xl mx-auto glass-pink rounded-3xl p-8 md:p-12 glow-border reveal text-center">
+     <h2 data-template-id="ending-heading" class="canva-text font-script mb-8"></h2>
+     <p data-template-id="ending-body" class="canva-text leading-relaxed"></p>
+     <p data-template-id="ending-signature" class="canva-text font-script mt-8"></p>
+    </div>
+   </section><!-- Footer -->
+   <footer data-template-id="footer-section" class="canva-footer py-10 px-4 text-center">
+    <p data-template-id="footer-text" class="canva-text"></p>
+   </footer>
+  </main>
+  <script src="/_sdk/b7bbbe551ba4f8f5.editing_sdk.js" integrity="sha512-h06pMz6KcVo4Wjvoggb4sS5DZpb55bTriAzBmA0YwbkBA3z2ZXl8CBEbCWT+/fAsm0SwDejJ7jJHOZsLZKqPoQ=="></script>
+  <script>
+        // Loading screen
+        window.addEventListener('load', () => {
+            setTimeout(() => document.getElementById('loader').classList.add('hidden'), 2800);
+        });
+
+        // Floating hearts
+        (function createHearts() {
+            const container = document.getElementById('hearts-container');
+            const symbols = ['💗','💕','🌸','✨','💖'];
+            for (let i = 0; i < 15; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'floating-heart';
+                heart.textContent = symbols[i % symbols.length];
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDuration = (8 + Math.random() * 12) + 's';
+                heart.style.animationDelay = Math.random() * 10 + 's';
+                heart.style.fontSize = (14 + Math.random() * 16) + 'px';
+                container.appendChild(heart);
+            }
+        })();
+
+        // Scroll reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+        }, { threshold: 0.15 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Lightbox
+        const galleryImages = document.querySelectorAll('[data-template-id^="gallery-"]');
+        function openLightbox(idx) {
+            const img = galleryImages[idx];
+            if (img && img.src) {
+                document.getElementById('lightbox-img').src = img.src;
+                document.getElementById('lightbox').classList.remove('hidden');
+            }
+        }
+        function closeLightbox() { document.getElementById('lightbox').classList.add('hidden'); }
+
+        // Gift
+        let giftOpened = false;
+        function openGift() {
+            if (giftOpened) return;
+            giftOpened = true;
+            const box = document.getElementById('gift-box');
+            box.classList.remove('gift-shake');
+            box.classList.add('gift-opened');
+            box.innerHTML = '<div class="text-8xl md:text-9xl">💝</div>';
+            document.getElementById('gift-message').classList.remove('hidden');
+            // Simple confetti
+            createConfetti();
+        }
+        function createConfetti() {
+            const colors = ['#FF4F81','#FFD700','#FFB6C1','#ff6b9d','#ffd93d'];
+            for (let i = 0; i < 60; i++) {
+                const c = document.createElement('div');
+                c.style.cssText = `position:fixed;top:-10px;left:${Math.random()*100}%;width:${6+Math.random()*6}px;height:${6+Math.random()*6}px;background:${colors[i%colors.length]};border-radius:${Math.random()>0.5?'50%':'2px'};z-index:9999;pointer-events:none;`;
+                document.body.appendChild(c);
+                const dur = 2000 + Math.random() * 2000;
+                c.animate([
+                    { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
+                    { transform: `translateY(${window.innerHeight+100}px) rotate(${Math.random()*720}deg)`, opacity: 0 }
+                ], { duration: dur, easing: 'cubic-bezier(0.25,0.46,0.45,0.94)' }).onfinish = () => c.remove();
+            }
+        }
+
+        // Countdown - next birthday (set to a date; using a generic next occurrence)
+        function updateCountdown() {
+            const now = new Date();
+            let target = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1); // Tomorrow as placeholder
+            const diff = target - now;
+            if (diff <= 0) return;
+            const h = Math.floor(diff / 3600000);
+            const m = Math.floor((diff % 3600000) / 60000);
+            const s = Math.floor((diff % 60000) / 1000);
+            document.getElementById('cd-hours').textContent = String(h).padStart(2, '0');
+            document.getElementById('cd-minutes').textContent = String(m).padStart(2, '0');
+            document.getElementById('cd-seconds').textContent = String(s).padStart(2, '0');
+        }
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', e => {
+                e.preventDefault();
+                const target = document.querySelector(a.getAttribute('href'));
+                if (target) target.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
+ </body>
+</html>
